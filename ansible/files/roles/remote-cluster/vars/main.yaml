@@ -1,0 +1,3 @@
+cluster_url: "{{ cluster.protocol }}://{{ cluster.host }}:{{ cluster.port }}"
+
+remote_cluster_json: "{{ lookup('template', 'remote-cluster.json.j2') }}"

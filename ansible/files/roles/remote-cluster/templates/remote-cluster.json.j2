@@ -1,0 +1,17 @@
+{
+  "persistent": {
+    "cluster": {
+      "remote": {
+        {% for cluster in remote_clusters %}
+        "{{ cluster.name }}": {
+          "seeds": [
+            {% for seed in cluster.seeds %}
+                "{{ seed.name }}:{{ seed.port }}",
+            {% endfor %}
+          ]
+        },
+        {% endfor %}
+      }
+    }
+  }
+}

@@ -1,7 +1,21 @@
 ---
-- hosts: opensearch-prod
+- hosts: prod-opensearch
   gather_facts: false
   roles:
-    - role: common
+    - role: remote-cluster
       tags:
-        - common
+        - remote-cluster
+
+- hosts: ppe-opensearch
+  gather_facts: false
+  roles:
+    - role: remote-cluster
+      tags:
+        - remote-cluster
+
+- hosts: qat-opensearch
+  gather_facts: false
+  roles:
+    - role: remote-cluster
+      tags:
+        - remote-cluster

@@ -1,0 +1,14 @@
+cluster:
+  protocol: http
+  host: prod-opensearch
+  port: 9200
+
+remote_clusters:
+  - name: ppe-opensearch
+    seeds:
+      - name: ppe-opensearch
+        port: 9300
+  - name: qat-opensearch
+    seeds:
+      - name: qat-opensearch
+        port: 9300

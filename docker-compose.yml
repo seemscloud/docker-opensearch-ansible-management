@@ -8,46 +8,58 @@ services:
       context: ansible
     environment:
       OPENSEARCH_URL: "http://coordinating"
-  opensearch01:
+  prod-opensearch:
     image: opensearchproject/opensearch:1.3.0
-    container_name: opensearch01
+    hostname: prod-opensearch
+    container_name: prod-opensearch
     environment:
-      - node.name=opensearch01
-    env_file:
-      - ./opensearch/default.env
+      - node.name=prod-opensearch
+      - cluster.name=prod-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - node.store.allow_mmap=false
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - DISABLE_INSTALL_DEMO_CONFIG=true
+      - DISABLE_SECURITY_PLUGIN=true
     volumes:
       - ${PWD}/opensearch/files/opensearch.yaml:/usr/share/opensearch/config/opensearch.yml
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-  opensearch02:
+  ppe-opensearch:
     image: opensearchproject/opensearch:1.3.0
-    container_name: opensearch02
+    hostname: ppe-opensearch
+    container_name: ppe-opensearch
     environment:
-      - node.name=opensearch02
-    env_file:
-      - ./opensearch/default.env
+      - node.name=ppe-opensearch
+      - cluster.name=ppe-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - node.store.allow_mmap=false
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - DISABLE_INSTALL_DEMO_CONFIG=true
+      - DISABLE_SECURITY_PLUGIN=true
     volumes:
       - ${PWD}/opensearch/files/opensearch.yaml:/usr/share/opensearch/config/opensearch.yml
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
+  qat-opensearch:
+    image: opensearchproject/opensearch:1.3.0
+    hostname: qat-opensearch
+    container_name: qat-opensearch
+    environment:
+      - node.name=qat-opensearch
+      - cluster.name=qat-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - node.store.allow_mmap=false
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - DISABLE_INSTALL_DEMO_CONFIG=true
+      - DISABLE_SECURITY_PLUGIN=true
+    volumes:
+      - ${PWD}/opensearch/files/opensearch.yaml:/usr/share/opensearch/config/opensearch.yml
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:1.3.0
     container_name: opensearch-dashboards
     ports:
       - 5601:5601
     environment:
-      OPENSEARCH_HOSTS: '["http://opensearch01:9200","http://opensearch02:9200"]'
-    env_file:
-      - ./opensearch-dashboards/default.env
+      OPENSEARCH_HOSTS: '["http://prod-opensearch:9200","http://ppe-opensearch:9200"]'
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"
     volumes:
       - ${PWD}/opensearch-dashboards/files/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
