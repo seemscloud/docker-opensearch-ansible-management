@@ -1,12 +1,7 @@
 ---
-- hosts: all
+- hosts: opensearch-prod
+  gather_facts: false
   roles:
     - role: common
       tags:
         - common
-
-- hosts: foo-web
-  roles:
-    - role: frontend
-      tags:
-        - frontend
