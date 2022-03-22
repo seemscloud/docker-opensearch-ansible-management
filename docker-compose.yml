@@ -1,11 +1,11 @@
 version: "3.9"
 
 services:
-  master:
-    container_name: master
-    hostname: master
+  ansible:
+    container_name: ansible
+    hostname: ansible
     build:
-      context: ./master
+      context: ansible
     environment:
       OPENSEARCH_URL: "http://coordinating"
   opensearch01:
