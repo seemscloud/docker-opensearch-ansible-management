@@ -1,0 +1,88 @@
+---
+- name: "Ensure Directory '/tmp/foo/{...}'"
+  file:
+    path: /tmp/foo/{{ item }}
+    state: directory
+    recurse: true
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]
+
+- name: "Create File '/tmp/foo/{...}/index.html'"
+  file:
+    path: /tmp/foo/{{ item }}/index.html
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]
+
+- name: "Block in '/tmp/foo/{{ item }}/index.html'"
+  blockinfile:
+    path: /tmp/foo/{{ item }}/index.html
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    insertafter: "<body>"
+    block: |
+      <h1>Welcome to</h1>
+      <p>Last updated</p>
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]
+
+- name: "Ensure Directory '/tmp/bar/{...}'"
+  file:
+    path: /tmp/bar/{{ item }}
+    state: directory
+    recurse: true
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]
+
+- name: "Create File '/tmp/bar/{...}/index.html'"
+  file:
+    path: /tmp/bar/{{ item }}/index.html
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]
+
+- name: "Block in '/tmp/bar/{{ item }}/index.html'"
+  blockinfile:
+    path: /tmp/bar/{{ item }}/index.html
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    insertafter: "<body>"
+    block: |
+      <h1>Welcome to</h1>
+      <p>Last updated</p>
+  with_items:
+    - apple
+    - banana
+    - orange
+    - pineapple
+  tags: [ common ]

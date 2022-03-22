@@ -1,1 +1,0 @@
-# docker-opensearch-ansible-management
