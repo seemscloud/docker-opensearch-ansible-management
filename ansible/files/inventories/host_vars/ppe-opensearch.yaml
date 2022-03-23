@@ -6,7 +6,7 @@ cluster:
 remote_clusters:
   - name: prod-opensearch
     seeds:
-      - name: ppe-opensearch
+      - name: prod-opensearch
         port: 9300
   - name: qat-opensearch
     seeds:

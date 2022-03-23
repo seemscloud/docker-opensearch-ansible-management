@@ -10,5 +10,5 @@ remote_clusters:
         port: 9300
   - name: ppe-opensearch
     seeds:
-      - name: prod-opensearch
+      - name: ppe-opensearch
         port: 9300
