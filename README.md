@@ -17,7 +17,6 @@ docker-compose up --build --remove-orphans --force-recreate ansible
 ## Output
 
 ```json
-[root]@[1ws0][~]# docker exec -it prod-opensearch curl http://0:9200/_remote/info?pretty
 {
   "ppe-opensearch" : {
     "connected" : true,
