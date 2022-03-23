@@ -1,0 +1,9 @@
+---
+- name: Set index unassigned node_left delayed_timeout to {{ index.unassigned.node_left.delayed_timeout }}
+  uri:
+    method: PUT
+    url: "{{ cluster_url }}/_all/_settings"
+    status_code: 200
+    body_format: json
+    return_content: yes
+    body: "{{ query_body_json }}"

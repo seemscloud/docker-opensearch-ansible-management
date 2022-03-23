@@ -6,4 +6,5 @@
     status_code: 200
     body_format: json
     return_content: yes
-    body: "{{ remote_cluster_json }}"
+    body: "{{ query_body_json }}"
+  tags: [ remote-cluster ]

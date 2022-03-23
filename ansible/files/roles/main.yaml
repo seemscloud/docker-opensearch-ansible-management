@@ -1,0 +1,28 @@
+---
+- hosts: opensearch
+  gather_facts: false
+  roles:
+    - role: ansible-run-time
+      tags:
+        - ansible-run-time
+      vars:
+        task: "All"
+        status: "Started"
+    - role: unassigned-timeout
+      tags:
+        - unassigned-timeout
+      vars:
+        task: "All"
+        status: "Finished"
+    - role: remote-cluster
+      tags:
+        - remote-cluster
+      vars:
+        task: "All"
+        status: "Finished"
+    - role: ansible-run-time
+      tags:
+        - ansible-run-time
+      vars:
+        task: "All"
+        status: "Finished"

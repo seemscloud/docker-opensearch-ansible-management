@@ -2,7 +2,7 @@ all:
   vars:
     ansible_connection: local
     ansible_python_interpreter: python3
-  hosts:
-    prod-opensearch:
-    ppe-opensearch:
-    qat-opensearch:
+  children:
+    opensearch:
+      hosts:
+        qat-opensearch:

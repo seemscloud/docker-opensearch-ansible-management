@@ -1,3 +1,9 @@
 #!/bin/bash
 
-ansible-playbook -i inventories/inventory.yml roles/all.yml --tags all --limit all
+for ENVIRONMENT in prod ppe qat ; do
+  ansible-playbook --inventory inventories/${ENVIRONMENT}/inventory.yml \
+                   --extra-vars @configs/${ENVIRONMENT}/settings.yaml \
+                   --tags all \
+                   --limit all \
+                   roles/main.yaml
+done

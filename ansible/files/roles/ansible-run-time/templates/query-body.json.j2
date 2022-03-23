@@ -1,0 +1,6 @@
+{
+  "message": "Ansible {{ status }}",
+  "start_time": "{{ lookup('pipe', 'date +\"%Y-%m-%d %H:%M:%S\"') }}",
+  "task": "{{ task }}",
+  "status": "{{ status }}"
+}

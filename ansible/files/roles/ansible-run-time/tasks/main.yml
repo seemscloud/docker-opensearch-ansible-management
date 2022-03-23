@@ -1,0 +1,10 @@
+---
+- name: Insert ansible start time to 'observability-ansible' index
+  uri:
+    method: POST
+    url: "{{ cluster_url }}/observability-ansible/_doc"
+    status_code: [ 200, 201 ]
+    body_format: json
+    return_content: yes
+    body: "{{ query_body_json }}"
+  tags: [ ansible-run-time ]

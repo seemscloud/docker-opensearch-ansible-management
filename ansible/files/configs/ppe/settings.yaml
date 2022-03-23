@@ -3,6 +3,8 @@ cluster:
   host: ppe-opensearch
   port: 9200
 
+cluster_url: "{{ cluster.protocol }}://{{ cluster.host }}:{{ cluster.port }}"
+
 remote_clusters:
   - name: prod-opensearch
     seeds:
@@ -12,3 +14,8 @@ remote_clusters:
     seeds:
       - name: qat-opensearch
         port: 9300
+
+index:
+  unassigned:
+    node_left:
+      delayed_timeout: 10m
