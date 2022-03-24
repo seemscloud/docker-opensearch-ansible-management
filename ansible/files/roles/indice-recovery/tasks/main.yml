@@ -1,0 +1,10 @@
+---
+- name: Set remote clusters
+  uri:
+    method: PUT
+    url: "{{ cluster_url }}/_cluster/settings"
+    status_code: 200
+    body_format: json
+    return_content: yes
+    body: "{{ query_body_json }}"
+  tags: [ indice-recovery ]

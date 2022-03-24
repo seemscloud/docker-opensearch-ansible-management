@@ -15,7 +15,29 @@ remote_clusters:
       - name: ppe-opensearch
         port: 9300
 
-index:
-  unassigned:
-    node_left:
-      delayed_timeout: 10m
+indices:
+  - name: printing
+  - name: industry
+
+followers:
+  - name: prod-lorem
+    remote_cluster: prod-opensearch
+    leader_index: lorem
+  - name: prod-ipsum
+    remote_cluster: prod-opensearch
+    leader_index: ipsum
+  - name: ppe-simply
+    remote_cluster: ppe-opensearch
+    leader_index: simply
+  - name: ppe-dummy
+    remote_cluster: ppe-opensearch
+    leader_index: dummy
+
+settings:
+  index:
+    unassigned:
+      node_left:
+        delayed_timeout: 10m
+  indices:
+    recovery:
+      max_bytes_per_sec: 50mb

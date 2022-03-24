@@ -1,0 +1,1 @@
+query_body_json: "{{ lookup('template', 'query-body.json.j2') }}"

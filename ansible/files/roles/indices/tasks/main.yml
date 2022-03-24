@@ -1,0 +1,12 @@
+---
+- name: Create indices
+  uri:
+    method: PUT
+    url: "{{ cluster_url }}/{{ item.name }}/_doc/1"
+    status_code: [ 200, 201 ]
+    body_format: json
+    return_content: yes
+    body: "{{ query_body_json }}"
+  tags: [ indices ]
+  with_items:
+    - "{{ followers }}"

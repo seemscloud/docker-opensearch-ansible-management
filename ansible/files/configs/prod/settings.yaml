@@ -15,7 +15,29 @@ remote_clusters:
       - name: qat-opensearch
         port: 9300
 
-index:
-  unassigned:
-    node_left:
-      delayed_timeout: 10m
+indices:
+  - name: lorem
+  - name: ipsum
+
+followers:
+  - name: ppe-simply
+    remote_cluster: ppe-opensearch
+    leader_index: simply
+  - name: ppe-dummy
+    remote_cluster: ppe-opensearch
+    leader_index: dummy
+  - name: qat-printing
+    remote_cluster: qat-opensearch
+    leader_index: printing
+  - name: qat-industry
+    remote_cluster: qat-opensearch
+    leader_index: industry
+
+settings:
+  index:
+    unassigned:
+      node_left:
+        delayed_timeout: 10m
+  indices:
+    recovery:
+      max_bytes_per_sec: 50mb
